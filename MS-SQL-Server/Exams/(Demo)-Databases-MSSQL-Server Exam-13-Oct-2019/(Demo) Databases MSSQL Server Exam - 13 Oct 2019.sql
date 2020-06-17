@@ -11,15 +11,9 @@ CREATE TABLE Repositories (
 )
 
 CREATE TABLE RepositoriesContributors (
-	RepositoryId INT NOT NULL, 
-	ContributorId INT NOT NULL,
-	CONSTRAINT PK_RepositoriesContributors PRIMARY KEY(RepositoryId, ContributorId),
-	CONSTRAINT FK_RepositoriesContributors_Repositories 
-		FOREIGN KEY(RepositoryId) 
-		REFERENCES Repositories(Id), 
-	CONSTRAINT FK_RepositoriesContributors_Users 
-		FOREIGN KEY(ContributorId) 
-		REFERENCES Users(Id)	
+	RepositoryId INT FOREIGN KEY REFERENCES Repositories(Id) NOT NULL, 
+	ContributorId INT FOREIGN KEY REFERENCES Users(Id) NOT NULL,
+	CONSTRAINT PK_RepositoriesContributors PRIMARY KEY(RepositoryId, ContributorId)
 )
 
 CREATE TABLE Issues (
